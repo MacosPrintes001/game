@@ -3,7 +3,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
-Cards(context, imagem, title, description) {
+AboutCard(imagem, String title, description) {
   return Card(
     elevation: 0.0,
     margin:
@@ -15,19 +15,37 @@ Cards(context, imagem, title, description) {
       speed: 1000,
       onFlipDone: (status) {},
       front: Container(
+        padding: const EdgeInsets.all(16),
+        width: 900,
+        height: 400,
         decoration: const BoxDecoration(
           color: Color(0xFF006666),
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.network("$imagem"),
-            Text('$title', style: Theme.of(context).textTheme.bodyLarge),
+            Expanded(
+              child: Text(
+                title.toUpperCase(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            Image(
+              image: AssetImage("$imagem"),
+              fit: BoxFit.contain,
+            ),
           ],
         ),
       ),
       back: Container(
+        width: 900,
+        height: 400,
+        padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
           color: Color(0xFF006666),
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -35,9 +53,28 @@ Cards(context, imagem, title, description) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '$description',
-              style: Theme.of(context).textTheme.bodyLarge,
+            Expanded(
+              child: Center(
+                child: Column(
+                  children: [
+                    Text(
+                      title.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text('$description',
+                        textAlign: TextAlign.justify,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 20)),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
