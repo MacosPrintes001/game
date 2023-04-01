@@ -1,7 +1,10 @@
 import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:game/pages/game.dart';
+import 'package:game/pages/home.dart';
 
 class MemoryGame {
-  List<int?> _cards;
+  final List<int?> _cards;
   int? _selectedCardIndex;
   bool _isGameOver;
 
@@ -27,7 +30,8 @@ class MemoryGame {
     }
   }
 
-  void selectCard(int index) {
+  void selectCard(int index, context) {
+
     if (_selectedCardIndex == null) {
       _selectedCardIndex = index;
     } else if (_selectedCardIndex != index) {
@@ -35,6 +39,37 @@ class MemoryGame {
         _cards[_selectedCardIndex!] = null;
         _cards[index] = null;
         if (_cards.every((card) => card == null)) {
+          showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              title: const Text('Você Venceu!'),
+              content: const Text('Incrivél você completou o jogo'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GamePage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Jogar de Novo'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  },
+                  child: const Text('Voltar ao Menu'),
+                ),
+              ],
+            ),
+          );
           _isGameOver = true;
         }
       }
@@ -42,4 +77,3 @@ class MemoryGame {
     }
   }
 }
-

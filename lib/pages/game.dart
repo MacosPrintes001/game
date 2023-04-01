@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:game/game_logic/memory_game.dart';
+import 'package:flip_card/flip_card.dart';
 
 class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+  const GamePage({Key? key}) : super(key: key);
 
   @override
   State<GamePage> createState() => _GamePageState();
@@ -10,18 +11,24 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   late MemoryGame _game;
+  var clicks = 0;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _game = MemoryGame();
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    clicks;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Jogo da Memória')),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
@@ -31,13 +38,29 @@ class _GamePageState extends State<GamePage> {
           if (_game.cards[index] == null) {
             return const SizedBox.shrink();
           } else {
-            return GestureDetector(
-              onTap: () {
+            return FlipCard(
+              onFlip: () {
                 setState(() {
-                  _game.selectCard(index);
+
+                  clicks += 1;
+                  print(clicks);
+                  _game.selectCard(index, context);
                 });
               },
-              child: Card(
+              front: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Image.asset(
+                  'assets/imagensLendas/back.png',
+                ),
+              ),
+              back: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Image.asset(
                   'assets/imagensLendas/${_game.cards[index]}.png',
                 ),
