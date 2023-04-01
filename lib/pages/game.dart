@@ -1,60 +1,72 @@
-import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:game/game_logic/memory_game.dart';
+import 'package:flip_card/flip_card.dart';
 
 class GamePage extends StatefulWidget {
-  const GamePage({super.key});
+  const GamePage({Key? key}) : super(key: key);
 
   @override
   State<GamePage> createState() => _GamePageState();
 }
 
-class my {}
-
 class _GamePageState extends State<GamePage> {
-  List<String> imagens = [
-    'assets/imagensLendas/boto.png',
-    'assets/imagensLendas/boto.png',
-    'assets/imagensLendas/caipo.png',
-    'assets/imagensLendas/caipo.png',
-    'assets/imagensLendas/cuca.png',
-    'assets/imagensLendas/cuca.png',
-    'assets/imagensLendas/curupira.png',
-    'assets/imagensLendas/curupira.png',
-    'assets/imagensLendas/saci.png',
-    'assets/imagensLendas/saci.png',
-    'assets/imagensLendas/mula.png',
-    'assets/imagensLendas/mula.png',
-  ];
+  late MemoryGame _game;
+  var clicks = 0;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    imagens.shuffle();
+    _game = MemoryGame();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    clicks;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
-        itemCount: imagens.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, crossAxisSpacing: 2),
+          crossAxisCount: 4,
+        ),
+        itemCount: _game.cards.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              FlipCard(
-                front: const Image(
-                  image: AssetImage(
-                    'assets/imagensLendas/back.png',
-                  ),
+          if (_game.cards[index] == null) {
+            return const SizedBox.shrink();
+          } else {
+            return FlipCard(
+              onFlip: () {
+                setState(() {
+
+                  clicks += 1;
+                  print(clicks);
+                  _game.selectCard(index, context);
+                });
+              },
+              front: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                back: Image(
-                  image: AssetImage(imagens[index]),
+                child: Image.asset(
+                  'assets/imagensLendas/back.png',
                 ),
               ),
-            ],
-          );
+              back: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Image.asset(
+                  'assets/imagensLendas/${_game.cards[index]}.png',
+                ),
+              ),
+            );
+          }
         },
       ),
     );

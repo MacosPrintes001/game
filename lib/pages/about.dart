@@ -47,42 +47,42 @@ A Caipora é geralmente vista como uma figura protetora dos animais e das planta
         child: Column(
           children: [
             AboutCard(
-              'assets/imagensLendas/curupira.png',
+              'assets/imagensLendas/1.png',
               'Curupira',
               curupi,
             ),
             AboutCard(
-              'assets/imagensLendas/saci.png',
+              'assets/imagensLendas/2.png',
               'Saci',
               saci,
             ),
             AboutCard(
-              'assets/imagensLendas/boto.png',
+              'assets/imagensLendas/3.png',
               'boto-cor-de-rosa',
               boto,
             ),
             AboutCard(
-              'assets/imagensLendas/iara.png',
+              'assets/imagensLendas/4.png',
               'Iara',
               iara,
             ),
             AboutCard(
-              'assets/imagensLendas/boitata.png',
+              'assets/imagensLendas/5.png',
               'Boitatá',
               boit,
             ),
             AboutCard(
-              'assets/imagensLendas/cuca.png',
+              'assets/imagensLendas/6.png',
               'cuca',
               cuca,
             ),
             AboutCard(
-              'assets/imagensLendas/mula.png',
+              'assets/imagensLendas/7.png',
               'MULA SEM CABEÇA',
               mula,
             ),
             AboutCard(
-              'assets/imagensLendas/caipo.png',
+              'assets/imagensLendas/8.png',
               'caipora',
               caipo,
             ),
