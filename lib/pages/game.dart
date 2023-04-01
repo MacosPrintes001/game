@@ -8,7 +8,6 @@ class GamePage extends StatefulWidget {
   State<GamePage> createState() => _GamePageState();
 }
 
-class my {}
 
 class _GamePageState extends State<GamePage> {
   List<String> imagens = [
