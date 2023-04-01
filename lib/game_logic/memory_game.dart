@@ -31,7 +31,6 @@ class MemoryGame {
   }
 
   void selectCard(int index, context) {
-
     if (_selectedCardIndex == null) {
       _selectedCardIndex = index;
     } else if (_selectedCardIndex != index) {
@@ -75,5 +74,39 @@ class MemoryGame {
       }
       _selectedCardIndex = null;
     }
+  }
+}
+
+class Game {
+  final Color hiddenCard = Colors.red;
+  List<Color>? gameColors;
+  List<String>? gameImg;
+  List<Color> cards = [
+    Colors.green,
+    Colors.yellow,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.blue
+  ];
+  final String hiddenCardpath = 'assets/imagensLendas/back.png';
+  List<String> cards_list = [
+    'assets/imagensLendas/1.png',
+    'assets/imagensLendas/2.png',
+    'assets/imagensLendas/3.png',
+    'assets/imagensLendas/4.png',
+    'assets/imagensLendas/5.png',
+    'assets/imagensLendas/6.png',
+    'assets/imagensLendas/7.png',
+    'assets/imagensLendas/8.png',
+  ];
+
+  final int cardCount = 32;
+  List<Map<int, String>> matchCheck = [];
+
+  //methods
+  void initGame() {
+    gameColors = List.generate(cardCount, (index) => hiddenCard);
+    gameImg = List.generate(cardCount, (index) => hiddenCardpath);
   }
 }
