@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game/components/aboutCard.dart';
+import 'package:Jogo_da_Memoria_Lendas/components/aboutCard.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});

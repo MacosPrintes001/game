@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game/pages/about.dart';
-import 'package:game/pages/game.dart';
+import 'package:Jogo_da_Memoria_Lendas/pages/about.dart';
+import 'package:Jogo_da_Memoria_Lendas/pages/game.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

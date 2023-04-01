@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game/game_logic/memory_game.dart';
+import 'package:Jogo_da_Memoria_Lendas/game_logic/memory_game.dart';
 import 'package:flip_card/flip_card.dart';
 
 class GamePage extends StatefulWidget {
@@ -11,7 +11,6 @@ class GamePage extends StatefulWidget {
 
 class _GamePageState extends State<GamePage> {
   late MemoryGame _game;
-  var clicks = 0;
 
   @override
   void initState() {
@@ -23,52 +22,64 @@ class _GamePageState extends State<GamePage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    clicks;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-        ),
-        itemCount: _game.cards.length,
-        itemBuilder: (context, index) {
-          if (_game.cards[index] == null) {
-            return const SizedBox.shrink();
-          } else {
-            return FlipCard(
-              onFlip: () {
-                setState(() {
+    double screenHeight = MediaQuery.of(context).size.height;
 
-                  clicks += 1;
-                  print(clicks);
-                  _game.selectCard(index, context);
-                });
-              },
-              front: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(8),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("JOGO FODA"),
+        ),
+        body: Center(
+          child: SizedBox(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                    ),
+                    itemCount: _game.cards.length,
+                    itemBuilder: (context, index) {
+                      if (_game.cards[index] == null) {
+                        return const SizedBox.shrink();
+                      } else {
+                        return FlipCard(
+                          onFlip: () {
+                            setState(() {
+                              _game.selectCard(index, context);
+                            });
+                          },
+                          front: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Image.asset(
+                              'assets/imagensLendas/0.png',
+                            ),
+                          ),
+                          back: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Image.asset(
+                              'assets/imagensLendas/${_game.cards[index]}.png',
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
-                child: Image.asset(
-                  'assets/imagensLendas/back.png',
-                ),
-              ),
-              back: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Image.asset(
-                  'assets/imagensLendas/${_game.cards[index]}.png',
-                ),
-              ),
-            );
-          }
-        },
-      ),
-    );
+              ],
+            ),
+          ),
+        ));
   }
 }

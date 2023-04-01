@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game/pages/home.dart';
+import 'package:Jogo_da_Memoria_Lendas/pages/home.dart';
 
 void main() {
   runApp(const MyApp());

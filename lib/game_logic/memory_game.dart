@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:game/pages/game.dart';
-import 'package:game/pages/home.dart';
+import 'package:Jogo_da_Memoria_Lendas/pages/game.dart';
+import 'package:Jogo_da_Memoria_Lendas/pages/home.dart';
 
 class MemoryGame {
   final List<int?> _cards;
@@ -31,7 +31,6 @@ class MemoryGame {
   }
 
   void selectCard(int index, context) {
-
     if (_selectedCardIndex == null) {
       _selectedCardIndex = index;
     } else if (_selectedCardIndex != index) {
@@ -47,25 +46,14 @@ class MemoryGame {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const GamePage(),
-                      ),
-                    );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        ModalRoute.withName("/"));
                   },
-                  child: const Text('Jogar de Novo'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomePage(),
-                      ),
-                    );
-                  },
-                  child: const Text('Voltar ao Menu'),
+                  child: const Text('OK'),
                 ),
               ],
             ),
