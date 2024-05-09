@@ -26,11 +26,10 @@ class _GamePageState extends State<GamePage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("JOGO FODA"),
+          title: const Text("JOGO DA MEMORIA"),
         ),
         body: Center(
           child: SizedBox(

@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:Jogo_da_Memoria_Lendas/pages/game.dart';
 import 'package:Jogo_da_Memoria_Lendas/pages/home.dart';
 
 class MemoryGame {
